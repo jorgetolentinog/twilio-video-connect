@@ -1,0 +1,23 @@
+.container {
+  position: absolute;
+  bottom: 0;
+  background: #141414;
+  padding: 10px;
+  margin-bottom: 20px;
+
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+
+    li {
+      button {
+        min-width: 80px;
+        height: 30px;
+      }
+    }
+  }
+}
