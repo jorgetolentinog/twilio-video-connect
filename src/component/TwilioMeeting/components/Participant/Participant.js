@@ -19,9 +19,13 @@ export const Participant = ({ participant, isVideoOnly }) => {
     <div className={style.container}>
       <video className={style.video} ref={videoRef} />
       <div className={style.info}>
-        {participant.identity}
-        <span>Video: {String(isVideoEnabled)}</span>
-        <span>Audio: {String(isAudioEnabled)}</span>
+        <div>{participant.identity}</div>
+        <div style={{ color: isVideoEnabled ? "lime" : "red" }}>
+          video: {String(isVideoEnabled)}
+        </div>
+        <div style={{ color: isAudioEnabled ? "lime" : "red" }}>
+          audio: {String(isAudioEnabled)}
+        </div>
       </div>
       {!isVideoOnly && <audio ref={audioRef} autoPlay={true} />}
     </div>

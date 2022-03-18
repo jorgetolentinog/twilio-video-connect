@@ -25,12 +25,18 @@ export const Toolbar = ({ localParticipant }) => {
     <div className={style.container}>
       <ul>
         <li>
-          <button onClick={() => trackToggle(localTrack.videoTrack)}>
+          <button
+            style={{ background: isVideoEnabled ? "lime" : "red" }}
+            onClick={() => trackToggle(localTrack.videoTrack)}
+          >
             Video ({String(isVideoEnabled)})
           </button>
         </li>
         <li>
-          <button onClick={() => trackToggle(localTrack.audioTrack)}>
+          <button
+            style={{ background: isAudioEnabled ? "lime" : "red" }}
+            onClick={() => trackToggle(localTrack.audioTrack)}
+          >
             Audio ({String(isAudioEnabled)})
           </button>
         </li>
