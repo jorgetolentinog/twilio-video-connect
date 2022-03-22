@@ -17,6 +17,11 @@ export const Room = ({ roomName, token, handleLogout }) => {
     })
       .then((newRoom) => {
         meeting.setRoom(newRoom);
+
+        window.addEventListener("beforeunload", () => {
+          console.log("beforeunload");
+          newRoom.disconnect();
+        });
       })
       .catch((error) => {
         console.log("video connect error", { error });
