@@ -1,10 +1,12 @@
 import React from "react";
 import style from "./Toolbar.module.scss";
 import { useTrack } from "../../hooks/useTrack/useTrack";
+import { useMeeting } from "../../hooks/useMeeting/useMeeting";
 import { useTrackIsEnabled } from "../../hooks/useTrackIsEnabled/useTrackIsEnabled";
 
-export const Toolbar = ({ localParticipant }) => {
-  const localTrack = useTrack({ participant: localParticipant });
+export const Toolbar = () => {
+  const meeting = useMeeting();
+  const localTrack = useTrack({ participant: meeting.room.localParticipant });
 
   const isVideoEnabled = useTrackIsEnabled(localTrack.videoTrack);
   const isAudioEnabled = useTrackIsEnabled(localTrack.audioTrack);

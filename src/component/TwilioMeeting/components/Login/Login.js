@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import style from "./Login.module.scss";
 
 export const Login = ({ handleLogin }) => {
   const [username, setUsername] = useState("asd");
@@ -34,9 +35,8 @@ export const Login = ({ handleLogin }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={style.container} onSubmit={handleSubmit}>
       <h2>Login</h2>
-
       <div>
         <label htmlFor="name">Nombre:</label>
         <input
@@ -47,7 +47,6 @@ export const Login = ({ handleLogin }) => {
           required
         />
       </div>
-
       <div>
         <label htmlFor="room">Room:</label>
         <input

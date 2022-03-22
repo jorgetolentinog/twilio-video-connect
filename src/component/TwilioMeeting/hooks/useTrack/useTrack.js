@@ -42,7 +42,9 @@ export const useTrack = ({ participant }) => {
       setAudioTrack(null);
       participant.removeAllListeners();
     };
-  }, [participant]);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return { videoTrack, audioTrack };
 };

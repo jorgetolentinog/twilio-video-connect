@@ -1,29 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Video from "twilio-video";
 import { Participant } from "../Participant/Participant";
 import { Toolbar } from "../Toolbar/Toolbar";
 import { useParticipants } from "../../hooks/useParticipants/useParticipants";
+import { useMeeting } from "../../hooks/useMeeting/useMeeting";
 import style from "./Room.module.scss";
 
 export const Room = ({ roomName, token, handleLogout }) => {
-  const [room, setRoom] = useState();
-  const participants = useParticipants({ room });
+  const meeting = useMeeting();
+  const participants = useParticipants({ room: meeting.room });
 
   useEffect(() => {
     Video.connect(token, {
       name: roomName,
-      audio: false,
-      video: true,
+      tracks: [meeting.localVideoTrack, meeting.localAudioTrack],
     })
       .then((newRoom) => {
-        setRoom(newRoom);
+        meeting.setRoom(newRoom);
       })
       .catch((error) => {
         console.log("video connect error", { error });
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roomName, token]);
 
-  if (!room) {
+  if (!meeting.room) {
     return <div>Loading...</div>;
   }
 
@@ -37,11 +38,11 @@ export const Room = ({ roomName, token, handleLogout }) => {
     <div className={style.container}>
       <div className={style.layout}>
         <div className={style.layoutItem}>
-          <Participant participant={room.localParticipant} />
+          <Participant participant={meeting.room.localParticipant} />
         </div>
         {remoteParticipants}
       </div>
-      <Toolbar localParticipant={room.localParticipant} />
+      <Toolbar localParticipant={meeting.room.localParticipant} />
     </div>
   );
 };
