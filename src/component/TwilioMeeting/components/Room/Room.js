@@ -8,7 +8,7 @@ import style from "./Room.module.scss";
 
 export const Room = ({ roomName, token, handleLogout }) => {
   const meeting = useMeeting();
-  const participants = useParticipants({ room: meeting.room });
+  const participants = useParticipants();
 
   useEffect(() => {
     Video.connect(token, {

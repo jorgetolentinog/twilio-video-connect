@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 
-export const MeetingContext = React.createContext();
+export const Context = React.createContext();
 
-export const MeetingProvider = ({ children }) => {
+export const Provider = ({ children }) => {
   const [room, setRoom] = useState(null);
   const [localVideoTrack, setLocalVideoTrack] = useState(null);
   const [localAudioTrack, setLocalAudioTrack] = useState(null);
 
   return (
-    <MeetingContext.Provider
+    <Context.Provider
       value={{
         room,
         localVideoTrack,
@@ -19,6 +19,6 @@ export const MeetingProvider = ({ children }) => {
       }}
     >
       {children}
-    </MeetingContext.Provider>
+    </Context.Provider>
   );
 };

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-export const useTrackAttach = ({ track, ref }) => {
+export const useAttachTrack = ({ track, ref }) => {
   useEffect(() => {
     if (!track) {
       return;

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export const useTrack = ({ participant }) => {
+export const useSubscribeTrack = ({ participant }) => {
   const [videoTrack, setVideoTrack] = useState();
   const [audioTrack, setAudioTrack] = useState();
 

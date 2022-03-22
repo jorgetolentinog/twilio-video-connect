@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export function useTrackIsEnabled(track) {
+export function useIsTrackEnabled(track) {
   const [isEnabled, setIsEnabled] = useState(track ? track.isEnabled : false);
 
   useEffect(() => {

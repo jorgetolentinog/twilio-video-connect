@@ -1,15 +1,17 @@
 import React from "react";
 import style from "./Toolbar.module.scss";
-import { useTrack } from "../../hooks/useTrack/useTrack";
+import { useSubscribeTrack } from "../../hooks/useSubscribeTrack/useSubscribeTrack";
 import { useMeeting } from "../../hooks/useMeeting/useMeeting";
-import { useTrackIsEnabled } from "../../hooks/useTrackIsEnabled/useTrackIsEnabled";
+import { useIsTrackEnabled } from "../../hooks/useIsTrackEnabled/useIsTrackEnabled";
 
 export const Toolbar = () => {
   const meeting = useMeeting();
-  const localTrack = useTrack({ participant: meeting.room.localParticipant });
+  const localTrack = useSubscribeTrack({
+    participant: meeting.room.localParticipant,
+  });
 
-  const isVideoEnabled = useTrackIsEnabled(localTrack.videoTrack);
-  const isAudioEnabled = useTrackIsEnabled(localTrack.audioTrack);
+  const isVideoEnabled = useIsTrackEnabled(localTrack.videoTrack);
+  const isAudioEnabled = useIsTrackEnabled(localTrack.audioTrack);
 
   const trackToggle = (track) => {
     if (!track) {

@@ -1,8 +1,8 @@
 import React from "react";
-import { MeetingContext } from "../../components/MeetingProvider/MeetingProvider";
+import { Context } from "../../components/Provider/Provider";
 
 export function useMeeting() {
-  const context = React.useContext(MeetingContext);
+  const context = React.useContext(Context);
   if (context == null) {
     throw new Error("Debe envolver el componente en el provider");
   }

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Login } from "./components/Login/Login";
 import { Room } from "./components/Room/Room";
 import { Settings } from "./components/Settings/Settings";
-import { MeetingProvider } from "./components/MeetingProvider/MeetingProvider";
+import { Provider } from "./components/Provider/Provider";
 
 export const TwilioMeeting = () => {
   const [session, setSession] = useState(null);
@@ -26,9 +26,9 @@ export const TwilioMeeting = () => {
   );
 
   return (
-    <MeetingProvider>
+    <Provider>
       <Settings />
       {content}
-    </MeetingProvider>
+    </Provider>
   );
 };

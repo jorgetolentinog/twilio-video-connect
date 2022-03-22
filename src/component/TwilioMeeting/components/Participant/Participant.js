@@ -1,19 +1,19 @@
 import React, { useRef } from "react";
-import { useTrack } from "../../hooks/useTrack/useTrack";
-import { useTrackIsEnabled } from "../../hooks/useTrackIsEnabled/useTrackIsEnabled";
-import { useTrackAttach } from "../../hooks/useTrackAttach/useTrackAttach";
+import { useSubscribeTrack } from "../../hooks/useSubscribeTrack/useSubscribeTrack";
+import { useIsTrackEnabled } from "../../hooks/useIsTrackEnabled/useIsTrackEnabled";
+import { useAttachTrack } from "../../hooks/useAttachTrack/useAttachTrack";
 import style from "./Participant.module.scss";
 
 export const Participant = ({ participant, isVideoOnly }) => {
   const videoRef = useRef();
   const audioRef = useRef();
 
-  const track = useTrack({ participant });
-  const isVideoEnabled = useTrackIsEnabled(track.videoTrack);
-  const isAudioEnabled = useTrackIsEnabled(track.audioTrack);
+  const track = useSubscribeTrack({ participant });
+  const isVideoEnabled = useIsTrackEnabled(track.videoTrack);
+  const isAudioEnabled = useIsTrackEnabled(track.audioTrack);
 
-  useTrackAttach({ track: track.videoTrack, ref: videoRef });
-  useTrackAttach({ track: track.audioTrack, ref: audioRef });
+  useAttachTrack({ track: track.videoTrack, ref: videoRef });
+  useAttachTrack({ track: track.audioTrack, ref: audioRef });
 
   return (
     <div className={style.container}>

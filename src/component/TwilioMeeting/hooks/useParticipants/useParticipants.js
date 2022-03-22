@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
+import { useMeeting } from "../useMeeting/useMeeting";
 
-export const useParticipants = ({ room }) => {
+export const useParticipants = () => {
+  const { room } = useMeeting();
   const [participants, setParticipants] = useState([]);
 
   useEffect(() => {
