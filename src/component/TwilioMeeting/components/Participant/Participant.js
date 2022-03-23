@@ -2,6 +2,8 @@ import React, { useRef } from "react";
 import { useSubscribeTrack } from "../../hooks/useSubscribeTrack/useSubscribeTrack";
 import { useIsTrackEnabled } from "../../hooks/useIsTrackEnabled/useIsTrackEnabled";
 import { useAttachTrack } from "../../hooks/useAttachTrack/useAttachTrack";
+import { VideoIcon } from "../Icon/VideoIcon";
+import { AudioIcon } from "../Icon/AudioIcon";
 import style from "./Participant.module.scss";
 
 export const Participant = ({ participant, isVideoOnly }) => {
@@ -19,13 +21,19 @@ export const Participant = ({ participant, isVideoOnly }) => {
     <div className={style.container}>
       <video className={style.video} ref={videoRef} />
       <div className={style.info}>
-        <div>{participant.identity}</div>
-        <div style={{ color: isVideoEnabled ? "lime" : "red" }}>
-          video: {String(isVideoEnabled)}
-        </div>
-        <div style={{ color: isAudioEnabled ? "lime" : "red" }}>
-          audio: {String(isAudioEnabled)}
-        </div>
+        <div className={style.infoName}>{participant.identity}</div>
+
+        {!isVideoEnabled && (
+          <div className={style.infoIndicator}>
+            <VideoIcon.Disabled />
+          </div>
+        )}
+
+        {!isAudioEnabled && (
+          <div className={style.infoIndicator}>
+            <AudioIcon.Disabled />
+          </div>
+        )}
       </div>
       {!isVideoOnly && <audio ref={audioRef} autoPlay={true} />}
     </div>

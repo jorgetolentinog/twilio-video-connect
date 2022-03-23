@@ -3,8 +3,10 @@ import style from "./Toolbar.module.scss";
 import { useSubscribeTrack } from "../../hooks/useSubscribeTrack/useSubscribeTrack";
 import { useMeeting } from "../../hooks/useMeeting/useMeeting";
 import { useIsTrackEnabled } from "../../hooks/useIsTrackEnabled/useIsTrackEnabled";
+import { AudioIcon } from "../Icon/AudioIcon";
+import { VideoIcon } from "../Icon/VideoIcon";
 
-export const Toolbar = () => {
+export const Toolbar = ({ visible }) => {
   const meeting = useMeeting();
   const localTrack = useSubscribeTrack({
     participant: meeting.room.localParticipant,
@@ -25,23 +27,28 @@ export const Toolbar = () => {
     }
   };
 
+  const classes = [style.content];
+  if (visible) {
+    classes.push(style.contentVisible);
+  }
+
   return (
-    <div className={style.container}>
-      <ul>
+    <div className={classes.join(" ")}>
+      <ul className={style.menu}>
         <li>
           <button
-            style={{ background: isVideoEnabled ? "lime" : "red" }}
+            className={style.button}
             onClick={() => trackToggle(localTrack.videoTrack)}
           >
-            Video ({String(isVideoEnabled)})
+            {isVideoEnabled ? <VideoIcon.Enabled /> : <VideoIcon.Disabled />}
           </button>
         </li>
         <li>
           <button
-            style={{ background: isAudioEnabled ? "lime" : "red" }}
+            className={style.button}
             onClick={() => trackToggle(localTrack.audioTrack)}
           >
-            Audio ({String(isAudioEnabled)})
+            {isAudioEnabled ? <AudioIcon.Enabled /> : <AudioIcon.Disabled />}
           </button>
         </li>
       </ul>

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Video from "twilio-video";
 import { Participant } from "../Participant/Participant";
 import { Toolbar } from "../Toolbar/Toolbar";
@@ -7,6 +7,8 @@ import { useMeeting } from "../../hooks/useMeeting/useMeeting";
 import style from "./Room.module.scss";
 
 export const Room = ({ roomName, token, handleLogout }) => {
+  const [visibleToolbar, setVisibleToolbar] = useState(false);
+
   const meeting = useMeeting();
   const participants = useParticipants();
 
@@ -40,14 +42,24 @@ export const Room = ({ roomName, token, handleLogout }) => {
   ));
 
   return (
-    <div className={style.container}>
+    <div
+      onMouseEnter={() => setVisibleToolbar(true)}
+      onMouseLeave={() => setVisibleToolbar(false)}
+      className={style.container}
+    >
       <div className={style.layout}>
         <div className={style.layoutItem}>
-          <Participant participant={meeting.room.localParticipant} />
+          <Participant
+            participant={meeting.room.localParticipant}
+            isVideoOnly={true}
+          />
         </div>
         {remoteParticipants}
       </div>
-      <Toolbar localParticipant={meeting.room.localParticipant} />
+      <Toolbar
+        visible={visibleToolbar}
+        localParticipant={meeting.room.localParticipant}
+      />
     </div>
   );
 };

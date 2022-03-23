@@ -4,6 +4,7 @@
   width: 100%;
   height: 100%;
   justify-content: center;
+  overflow: hidden;
 }
 
 .video {
@@ -20,6 +21,29 @@
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
   color: #fff;
-  padding: 0 10px;
-  font-size: 14px;
+  padding: 0 5px;
+  font-size: 12px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-height: 22px;
+
+  &Name {
+    display: block;
+    max-width: 80px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  &Indicator {
+    display: block;
+    margin-left: 5px;
+    margin-bottom: -3px;
+
+    svg {
+      width: 14px;
+      fill: #ff4200;
+    }
+  }
 }
